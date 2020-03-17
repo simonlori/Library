@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><KonyvLista>
+    <Konyv id="2">
+        <Cim>Szupermarket</Cim>
+        <Szerzo>Bobby Hall</Szerzo>
+        <Kiado>21. Század Kiadó</Kiado>
+        <ISBN>321654</ISBN>
+        <KiadasEve>2019</KiadasEve>
+    </Konyv>
+    <Konyv id="3">
+        <Cim>Helymeghatarozo meresek</Cim>
+        <Szerzo>Simon Lorand</Szerzo>
+        <Kiado>nincs</Kiado>
+        <ISBN>111111</ISBN>
+        <KiadasEve>2020</KiadasEve>
+    </Konyv>
+    <Konyv id="3">
+        <Cim>Helymeghatarozo meresek</Cim>
+        <Szerzo>Simon Lorand</Szerzo>
+        <Kiado>nincs</Kiado>
+        <ISBN>111111</ISBN>
+        <KiadasEve>2020</KiadasEve>
+    </Konyv>
+</KonyvLista>
