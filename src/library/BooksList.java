@@ -136,7 +136,7 @@ public class BooksList implements  Serializable{
             konyv.appendChild(konyvKiadasEve);
         }
         
-       // write the content into xml file
+        // write the content into xml file
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         DOMSource source = new DOMSource(doc);

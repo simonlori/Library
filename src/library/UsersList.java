@@ -97,8 +97,8 @@ public class UsersList implements  Serializable{
         return false;
     }
      
-    public Boolean userListaMentesXML(){
-    try{
+    public Boolean userListMentesXML(){
+        try{
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
         Document doc = (Document) docBuilder.newDocument();
@@ -106,30 +106,34 @@ public class UsersList implements  Serializable{
 	Element rootElement = doc.createElement("UserLista");
         doc.appendChild(rootElement);
         
-        //most vegigmegyunk a listan
-	for(User u: userList){
-            Element user = doc.createElement("User");
-            rootElement.appendChild(user);
-            Attr attr = doc.createAttribute("id");
-            
-            attr.setValue(u.getCNP());
-            user.setAttributeNode(attr);
-            
-            Element userNev = doc.createElement("Nev");
-            userNev.appendChild(doc.createTextNode(u.getNev()));
-            user.appendChild(userNev);
+        for(User u : userList){
+                Element user = doc.createElement("User");
+                rootElement.appendChild(user);
+                user.setAttribute("id", u.getCNP());
                 
-            Element userJelszo = doc.createElement("Jelszo");
-            userJelszo.appendChild(doc.createTextNode(u.getJelszo()));
-            user.appendChild(userJelszo);
-            
-            //Element userElerhetoseg = doc.createElement("Elerhetoseg");
-            //userElerhetoseg.appendChild(doc.createTextNode(u.getElerhetoseg().toString()));
-            //user.appendChild(userElerhetoseg);
- 
-        }
-        
-       // write the content into xml file
+                Element name = doc.createElement("Nev");
+                name.appendChild(doc.createTextNode(u.getNev()));
+                user.appendChild(name);
+                
+                    Element contactAddress = doc.createElement("Elerhetoseg");
+
+                    Element telSzam = doc.createElement("telSzam");
+                    telSzam.appendChild(doc.createTextNode(u.getElerhetoseg().getTelSzam()));
+
+                    Element utcaNev = doc.createElement("UtcaNev");
+                    utcaNev.appendChild(doc.createTextNode(u.getElerhetoseg().getUtcaNev()));
+
+                    Element email = doc.createElement("Email");
+                    email.appendChild(doc.createTextNode(u.getElerhetoseg().getEmail()));
+
+                    contactAddress.appendChild(telSzam);
+                    contactAddress.appendChild(utcaNev);
+                    contactAddress.appendChild(email);
+                    
+                user.appendChild(contactAddress);
+
+            }
+         // write the content into xml file
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         DOMSource source = new DOMSource(doc);
@@ -139,13 +143,12 @@ public class UsersList implements  Serializable{
  
         System.out.println("File saved!");
         return true;
-
-
-    }catch(Exception e){
-        e.printStackTrace();
+        
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
-    return false;
-}
      
     public Boolean userListBetoltese(){
         String filename = "users.txt";
@@ -161,4 +164,38 @@ public class UsersList implements  Serializable{
         return false;
     } 
     
+    public void userListBetoltesXML(){
+        try{
+            File fXmlFile = new File("userLista.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fXmlFile);
+	
+            doc.getDocumentElement().normalize();
+
+            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+            NodeList nList = doc.getElementsByTagName("User");
+            
+            for (int temp = 0; temp < nList.getLength(); temp++) {
+
+                Node nNode = nList.item(temp);
+
+                System.out.println("\nCurrent Element :" + nNode.getNodeName());
+
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                    Element eElement = (Element) nNode;
+
+                    System.out.println("ID : " + eElement.getAttribute("id"));
+                    System.out.println("Nev : " + eElement.getElementsByTagName("Nev").item(0).getTextContent());
+                    
+                    System.out.println("Telefonszam : " + eElement.getElementsByTagName("telSzam").item(0).getTextContent());
+                    System.out.println("Utca/hazszam : " + eElement.getElementsByTagName("UtcaNev").item(0).getTextContent());
+                    System.out.println("Email : " + eElement.getElementsByTagName("Email").item(0).getTextContent());
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 }

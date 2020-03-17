@@ -49,6 +49,9 @@ public class Main {
         
         konyvLista.konyvListaMentese();
         konyvLista.konyvListaBetoltes();
+        
+        //konyvLista.konyvListaMentesXML();
+        //konyvLista.konyvListaBetoltesXML();
         */
         
         //Felhasznalok
@@ -86,10 +89,8 @@ public class Main {
         felhasznaloLista.userListMentese();
         felhasznaloLista.userListBetoltese();
         
-        //konyvLista.konyvListaMentesXML();
-        //konyvLista.konyvListaBetoltesXML();
-        
         System.out.println("\n");
-        felhasznaloLista.userListaMentesXML();
+        felhasznaloLista.userListMentesXML();
+        felhasznaloLista.userListBetoltesXML();
     }
 }
