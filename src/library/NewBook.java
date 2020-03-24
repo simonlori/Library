@@ -57,7 +57,6 @@ public class NewBook extends javax.swing.JFrame {
 
         jLabel2.setText("Szerzo");
 
-        jTextField6.setText("jTextField6");
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);

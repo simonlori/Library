@@ -109,7 +109,7 @@ public class NewUser extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
@@ -131,11 +131,15 @@ public class NewUser extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         User u = new User();
+        ContactAddress contact = new ContactAddress();
+        contact.setEmail(jTextField2.getText());
+        contact.setTelSzam(jTextField3.getText());
+        contact.setUtcaNev(jTextField4.getText());
         u.setNev(jTextField1.getText());
-        u.setElerhetoseg.setEmail(jTextField2.getText());
-        u.setElerhetoseg.setTelSzam(jTextField2.getText());
+        u.setElerhetoseg(contact);
         u.setCNP(jTextField5.getText());
         
+        felhasznaloLista.hozzaad(u);
         JOptionPane.showMessageDialog(this, "Sikeres hozzaadas!");
         setVisible(false);
         Interface a = new Interface();
