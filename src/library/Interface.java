@@ -33,25 +33,28 @@ public class Interface extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu1.setText("Data");
 
-        jMenuItem1.setText("Import Book XML");
+        jMenuItem1.setText("Import Book TXT");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -59,7 +62,15 @@ public class Interface extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Import User XML");
+        jMenuItem6.setText("Import Book XML");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem6);
+
+        jMenuItem2.setText("Import User TXT");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -67,7 +78,16 @@ public class Interface extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setText("Export Book XML");
+        jMenuItem8.setText("Import User XML");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem8);
+        jMenu1.add(jSeparator1);
+
+        jMenuItem3.setText("Export Book TXT");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -75,13 +95,29 @@ public class Interface extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
-        jMenuItem4.setText("Export User XML");
+        jMenuItem10.setText("Export Book XML");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem10);
+
+        jMenuItem4.setText("Export User TXT");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
             }
         });
         jMenu1.add(jMenuItem4);
+
+        jMenuItem12.setText("Export User XML");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem12);
 
         jMenuBar1.add(jMenu1);
 
@@ -94,31 +130,26 @@ public class Interface extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem5);
-
-        jMenuItem6.setText("Delete book");
-        jMenu2.add(jMenuItem6);
+        jMenu2.add(jSeparator2);
 
         jMenuItem7.setText("List books");
         jMenu2.add(jMenuItem7);
-
-        jMenuItem8.setText("Find book");
-        jMenu2.add(jMenuItem8);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("User");
 
         jMenuItem9.setText("Add new user");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem9);
-
-        jMenuItem10.setText("Delete user");
-        jMenu3.add(jMenuItem10);
+        jMenu3.add(jSeparator3);
 
         jMenuItem11.setText("List users");
         jMenu3.add(jMenuItem11);
-
-        jMenuItem12.setText("Find user");
-        jMenu3.add(jMenuItem12);
 
         jMenuBar1.add(jMenu3);
 
@@ -140,29 +171,27 @@ public class Interface extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        konyvLista.konyvListaBetoltesXML();
         konyvLista.konyvListaBetoltes();
+        JOptionPane.showMessageDialog(this, "Sikeres konyv lista betoltes! (TXT)");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        felhasznaloLista.userListBetoltesXML();
         felhasznaloLista.userListBetoltese();
+        JOptionPane.showMessageDialog(this, "Sikeres user lista betoltes! (TXT)");
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        konyvLista.konyvListaMentesXML();
         konyvLista.konyvListaMentese();
-        JOptionPane.showMessageDialog(this, "Sikeres konyvlista mentes!");
+        JOptionPane.showMessageDialog(this, "Sikeres konyv lista mentes! (TXT)");
       
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        felhasznaloLista.userListMentesXML();
         felhasznaloLista.userListMentese();
-        JOptionPane.showMessageDialog(this, "Sikeres userlista mentes!");
+        JOptionPane.showMessageDialog(this, "Sikeres user lista mentes! (TXT)");
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -171,6 +200,37 @@ public class Interface extends javax.swing.JFrame {
         NewBook a = new NewBook();
         a.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        NewUser a = new NewUser();
+        a.setVisible(true);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        konyvLista.konyvListaBetoltesXML();
+        JOptionPane.showMessageDialog(this, "Sikeres konyv lista betoltes! (XML)");
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        felhasznaloLista.userListBetoltesXML();
+        JOptionPane.showMessageDialog(this, "Sikeres user lista betoltes! (XML)");
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        // TODO add your handling code here:
+        felhasznaloLista.userListMentesXML();
+        JOptionPane.showMessageDialog(this, "Sikeres user lista mentes! (XML)");
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+        konyvLista.konyvListaMentesXML();
+        JOptionPane.showMessageDialog(this, "Sikeres konyv lista mentes! (XML)");
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,5 +313,8 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
     // End of variables declaration//GEN-END:variables
 }
