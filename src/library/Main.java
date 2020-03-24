@@ -18,10 +18,10 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        /*
-        Book konyv1 = new Book("Maffiózók mackónadrágban", "Dezső András", "21. Század Kiadó", 2019, 955365, "1");
-        Book konyv2 = new Book("Szupermarket", "Bobby Hall", "21. Század Kiadó", 2019, 321654, "2");
-        Book konyv3 = new Book("Helymeghatarozo meresek", "Simon Lorand", "Sapientia", 2020, 111111, "3");
+        
+        Book konyv1 = new Book("Maffiózók mackónadrágban", "Dezső András", "21. Század Kiadó", "2019", "955365", "1");
+        Book konyv2 = new Book("Szupermarket", "Bobby Hall", "21. Század Kiadó", "2019", "321654", "2");
+        Book konyv3 = new Book("Helymeghatarozo meresek", "Simon Lorand", "Sapientia", "2020", "111111", "3");
         
         BooksList konyvLista = new BooksList();
         konyvLista.hozzad(konyv1);
@@ -51,13 +51,13 @@ public class Main {
         konyvLista.konyvListaBetoltes();
         
         //konyvLista.konyvListaMentesXML();
-        //konyvLista.konyvListaBetoltesXML();
-        */
+        konyvLista.konyvListaBetoltesXML();
+        
         
         //Felhasznalok
         
         
-        User user1 = new User("Barabas", new ContactAddress("barabas@gmail.com", "0748255986", "Vasarhley 1"), "1234567890");
+        /*User user1 = new User("Barabas", new ContactAddress("barabas@gmail.com", "0748255986", "Vasarhley 1"), "1234567890");
         User user2 = new User("Valeria", new ContactAddress("valeria@yahoo.com", "0755202356", "Vasarhely 2"), "2345678901");
         User user3 = new User("Louluuu", new ContactAddress("louluou@12345.com", "0101010101", "Vasarhely 919"), "1212121212");
         
@@ -91,6 +91,6 @@ public class Main {
         
         System.out.println("\n");
         felhasznaloLista.userListMentesXML();
-        felhasznaloLista.userListBetoltesXML();
+        felhasznaloLista.userListBetoltesXML();*/
     }
 }

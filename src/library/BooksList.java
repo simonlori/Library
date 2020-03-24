@@ -126,13 +126,12 @@ public class BooksList implements  Serializable{
             
             //ISBN element
             Element konyvISBN = doc.createElement("ISBN");
-            Integer i = book.getISBN();
-            konyvISBN.appendChild(doc.createTextNode(i.toString()));
+            konyvISBN.appendChild(doc.createTextNode(book.getISBN()));
             konyv.appendChild(konyvISBN);
             
             //kiadasEve element
             Element konyvKiadasEve = doc.createElement("KiadasEve");
-            konyvKiadasEve.appendChild(doc.createTextNode( ((Integer)book.getKiadasEve()).toString()  ));
+            konyvKiadasEve.appendChild(doc.createTextNode(book.getKiadasEve()));
             konyv.appendChild(konyvKiadasEve);
         }
         
