@@ -6,19 +6,29 @@
 
 package library;
 
+import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Lori
  */
 public class Interface extends javax.swing.JFrame {
+    
+    private final DefaultTableModel tableModel;
+    private final DefaultTableModel tableModel2;
+    
 
     /**
      * Creates new form Interface
      */
     public Interface() {
         initComponents();
+        
+        tableModel = (DefaultTableModel) jTable1.getModel();
+        tableModel2 = (DefaultTableModel) jTable2.getModel();
+        
     }
 
     /**
@@ -30,6 +40,12 @@ public class Interface extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -51,6 +67,30 @@ public class Interface extends javax.swing.JFrame {
         jMenuItem11 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Szerzo", "Cim", "Kiado", "Kiadasi ev", "ISBN"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jLabel1.setText("BOOKS");
+
+        jLabel2.setText("USERS");
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nev", "Email", "Telefon"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
 
         jMenu1.setText("Data");
 
@@ -133,6 +173,11 @@ public class Interface extends javax.swing.JFrame {
         jMenu2.add(jSeparator2);
 
         jMenuItem7.setText("List books");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem7);
 
         jMenuBar1.add(jMenu2);
@@ -149,6 +194,11 @@ public class Interface extends javax.swing.JFrame {
         jMenu3.add(jSeparator3);
 
         jMenuItem11.setText("List users");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem11);
 
         jMenuBar1.add(jMenu3);
@@ -159,11 +209,27 @@ public class Interface extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 623, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addContainerGap(272, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 286, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -232,6 +298,42 @@ public class Interface extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Sikeres konyv lista mentes! (XML)");
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        if (konyvLista.meret() < 1)
+        {
+            JOptionPane.showMessageDialog(this, "Add a book or import books!");
+        }else
+        {
+            if(tableModel.getRowCount() < 1)
+            {
+                for(int i=0 ;i < konyvLista.meret(); ++i)
+                {
+                    tableModel.insertRow(tableModel.getRowCount(), new Object[]{konyvLista.konyvek.get(i).getID(), konyvLista.konyvek.get(i).getSzerzo(), konyvLista.konyvek.get(i).getCim(), konyvLista.konyvek.get(i).getKiado(), konyvLista.konyvek.get(i).getKiadasEve(),konyvLista.konyvek.get(i).getISBN()});
+                }
+        
+            }
+        }
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        // TODO add your handling code here:
+        if (felhasznaloLista.meret() < 1)
+        {
+            JOptionPane.showMessageDialog(this, "Add a user or import users!");
+        }else
+        {
+            if(tableModel2.getRowCount() < 1)
+            {
+                for(int i=0 ;i < felhasznaloLista.meret(); ++i)
+                {
+                    tableModel2.insertRow(tableModel2.getRowCount(), new Object[]{felhasznaloLista.userList.get(i).getCNP(),felhasznaloLista.userList.get(i).getNev(),felhasznaloLista.userList.get(i).getElerhetoseg().getEmail(),felhasznaloLista.userList.get(i).getElerhetoseg().getTelSzam()});
+                }
+        
+            }
+        }
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -258,27 +360,29 @@ public class Interface extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
-        //Konyvek
+        felhasznaloLista = new UsersList();
+        konyvLista = new BooksList();
+        /*Konyvek
         konyv1 = new Book("Maffiózók mackónadrágban", "Dezső András", "21. Század Kiadó", "2019", "955365", "1");
         konyv2 = new Book("Szupermarket", "Bobby Hall", "21. Század Kiadó", "2019", "321654", "2");
         konyv3 = new Book("Helymeghatarozo meresek", "Simon Lorand", "Sapientia", "2020", "111111", "3");
         
-        konyvLista = new BooksList();
+        
         konyvLista.hozzad(konyv1);
         konyvLista.hozzad(konyv2);
         konyvLista.hozzad(konyv3);
+        */
         
-        //Userek
+        /*Userek
         user1 = new User("Barabas", new ContactAddress("barabas@gmail.com", "0748255986", "Vasarhley 1"), "1234567890");
         user2 = new User("Valeria", new ContactAddress("valeria@yahoo.com", "0755202356", "Vasarhely 2"), "2345678901");
         user3 = new User("Louluuu", new ContactAddress("louluou@12345.com", "0101010101", "Vasarhely 919"), "1212121212");
         
-        felhasznaloLista = new UsersList();
         
         felhasznaloLista.hozzaad(user1);
         felhasznaloLista.hozzaad(user2);
         felhasznaloLista.hozzaad(user3);
+        */
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -286,17 +390,12 @@ public class Interface extends javax.swing.JFrame {
             }
         });
     }
-    public static Book konyv1;
-    public static Book konyv2;
-    public static Book konyv3;
-    public static BooksList konyvLista;    
-        
-    public static User user1;
-    public static User user2;
-    public static User user3;
+    public static BooksList konyvLista;
     public static UsersList felhasznaloLista;
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -313,8 +412,12 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

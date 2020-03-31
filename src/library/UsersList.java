@@ -35,7 +35,7 @@ import org.w3c.dom.NodeList;
  * @author Exodia
  */
 public class UsersList implements  Serializable{
-    private List<User> userList;
+    public List<User> userList;
     
     public UsersList(){
         userList = new ArrayList<User>();
@@ -48,6 +48,11 @@ public class UsersList implements  Serializable{
                 System.out.println(user);
         }
         return null;
+    }
+     
+     public int meret()
+    {
+        return userList.size();
     }
      
      public void hozzaad(User user){
@@ -90,7 +95,7 @@ public class UsersList implements  Serializable{
             out.writeObject(userList);
             out.close();
             file.close();
-            System.out.println("Sikeres mentes es kiiras!");
+            System.out.println("Sikeres mentes!");
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -155,9 +160,11 @@ public class UsersList implements  Serializable{
         try{
             FileInputStream file = new FileInputStream(filename);
             ObjectInputStream out2 = new ObjectInputStream(file);
-            List<User> ujLista = new ArrayList<User>();
-            ujLista = (List<User>) out2.readObject();
-            System.out.println("Sikeres beolvasas!");
+            userList = (List<User>) out2.readObject();
+            for(User user : userList)
+            {
+                System.out.println(user);
+            }
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -181,6 +188,9 @@ public class UsersList implements  Serializable{
                 Node nNode = nList.item(temp);
 
                 System.out.println("\nCurrent Element :" + nNode.getNodeName());
+                
+                User u = new User();
+                ContactAddress c = new ContactAddress();
 
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
@@ -188,10 +198,18 @@ public class UsersList implements  Serializable{
 
                     System.out.println("ID : " + eElement.getAttribute("id"));
                     System.out.println("Nev : " + eElement.getElementsByTagName("Nev").item(0).getTextContent());
-                    
                     System.out.println("Telefonszam : " + eElement.getElementsByTagName("telSzam").item(0).getTextContent());
                     System.out.println("Utca/hazszam : " + eElement.getElementsByTagName("UtcaNev").item(0).getTextContent());
                     System.out.println("Email : " + eElement.getElementsByTagName("Email").item(0).getTextContent());
+                    
+                    u.setCNP(eElement.getAttribute("id"));
+                    u.setNev(eElement.getElementsByTagName("Nev").item(0).getTextContent());
+                    c.setTelSzam(eElement.getElementsByTagName("telSzam").item(0).getTextContent());
+                    c.setUtcaNev(eElement.getElementsByTagName("UtcaNev").item(0).getTextContent());
+                    c.setEmail(eElement.getElementsByTagName("Email").item(0).getTextContent());
+                    u.setElerhetoseg(c);
+                    userList.add(u);
+                  
                 }
             }
         }catch(Exception e){

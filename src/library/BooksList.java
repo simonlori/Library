@@ -36,7 +36,7 @@ import org.w3c.dom.NodeList;
  */
 public class BooksList implements  Serializable{
     
-    private List<Book> konyvek; 
+    public List<Book> konyvek; 
     
     public BooksList(){
         konyvek = new ArrayList<Book>();
@@ -48,6 +48,11 @@ public class BooksList implements  Serializable{
             
         }
         return null;
+    }
+    
+    public int meret()
+    {
+        return konyvek.size();
     }
     public void hozzad(Book konyv){
         konyvek.add(konyv);
@@ -157,9 +162,11 @@ public class BooksList implements  Serializable{
         try{
             FileInputStream file = new FileInputStream(filename);
             ObjectInputStream out2 = new ObjectInputStream(file);
-            List<Book> ujLista = new ArrayList<Book>();
-            ujLista = (List<Book>) out2.readObject();
-            System.out.println("Sikeres beolvasas");
+            konyvek = (List<Book>) out2.readObject();
+            for(Book book : konyvek)
+            {
+                System.out.println(book);
+            }
         }catch(Exception e){
             e.printStackTrace();
             
@@ -188,16 +195,25 @@ public class BooksList implements  Serializable{
                 System.out.println("\nCurrent Element :" + nNode.getNodeName());
                 //System.out.println(nNode.getChildNodes());
                 
+                Book k = new Book();
+                
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
                     
                     //System.out.println("Konyv id : " + eElement.getAttribute("id"));
-                    System.out.println("Konyv cim : " + eElement.getElementsByTagName("Cim").item(0).getTextContent());
-                    System.out.println("Konyv szerzo : " + eElement.getElementsByTagName("Szerzo").item(0).getTextContent());
-                    System.out.println("Konyv kiado : " + eElement.getElementsByTagName("Kiado").item(0).getTextContent());
-                    System.out.println("Konyv ISBN : " + eElement.getElementsByTagName("ISBN").item(0).getTextContent());
-                    System.out.println("Konyv kiadasEve : " + eElement.getElementsByTagName("KiadasEve").item(0).getTextContent());
+                    System.out.println("Cim : " + eElement.getElementsByTagName("Cim").item(0).getTextContent());
+                    System.out.println("Szerzo : " + eElement.getElementsByTagName("Szerzo").item(0).getTextContent());
+                    System.out.println("Kiado : " + eElement.getElementsByTagName("Kiado").item(0).getTextContent());
+                    System.out.println("ISBN : " + eElement.getElementsByTagName("ISBN").item(0).getTextContent());
+                    System.out.println("KiadasEve : " + eElement.getElementsByTagName("KiadasEve").item(0).getTextContent());
                     
+                    k.setID(eElement.getAttribute("id"));
+                    k.setCim(eElement.getElementsByTagName("Cim").item(0).getTextContent());
+                    k.setSzerzo(eElement.getElementsByTagName("Szerzo").item(0).getTextContent());
+                    k.setKiado(eElement.getElementsByTagName("Kiado").item(0).getTextContent());
+                    k.setISBN(eElement.getElementsByTagName("ISBN").item(0).getTextContent());
+                    k.setKiadasEve(eElement.getElementsByTagName("KiadasEve").item(0).getTextContent());
+                    konyvek.add(k);
                 }
             }
            // System.out.println("Betoltes SIKERES");
