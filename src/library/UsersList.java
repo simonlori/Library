@@ -18,6 +18,9 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -215,5 +218,19 @@ public class UsersList implements  Serializable{
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+    
+    public void removeSelectedFromTable(JTable from)
+    {
+        int[] rows = from.getSelectedRows();
+        TableModel tm= from.getModel();
+
+        while(rows.length>0)
+        {
+            ((DefaultTableModel)tm).removeRow(from.convertRowIndexToModel(rows[0]));
+
+            rows = from.getSelectedRows();
+        }
+            from.clearSelection();
     }
 }
