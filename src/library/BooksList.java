@@ -13,19 +13,16 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-//import javax.lang.model.element.Element;
-//import javax.swing.text.Document;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.File;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-
- 
 import org.w3c.dom.Attr;
-//import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -41,6 +38,7 @@ public class BooksList implements  Serializable{
     public BooksList(){
         konyvek = new ArrayList<Book>();
     }
+    
     public Book keres(String ID){
         for(Book konyv : konyvek){
             if(konyv.getID().equals(ID))
@@ -57,6 +55,7 @@ public class BooksList implements  Serializable{
     public void hozzad(Book konyv){
         konyvek.add(konyv);
     }
+    
     public Boolean torol(String ID){
         for(Book konyv : konyvek){
             if(konyv.getID().equals(ID))
@@ -65,6 +64,7 @@ public class BooksList implements  Serializable{
         }
         return false;
     }
+    
     public Boolean modosit(String Id, Book konyv){
         for(Book konyvElem : konyvek){
             if(konyvElem.getID().equals(Id) ){
@@ -78,11 +78,13 @@ public class BooksList implements  Serializable{
         }
         return false;
     }
+    
     public void kiListaz(){
         for(Book konyv : konyvek)
             
         System.out.println(konyv.toString()+ " Kiado: " + konyv.getKiado()+ " ID: " + konyv.getID());
     }
+    
     public Boolean konyvListaMentese(){
         String filename = "konyvek.txt";
         
@@ -98,6 +100,7 @@ public class BooksList implements  Serializable{
         }
         return false;
     }
+    
     public Boolean konyvListaMentesXML(){
     try{
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -157,6 +160,7 @@ public class BooksList implements  Serializable{
     }
     return false;
 }
+    
     public Boolean konyvListaBetoltes(){
         String filename = "konyvek.txt";
         try{
@@ -226,5 +230,18 @@ public class BooksList implements  Serializable{
         }
         
     }
-        
+    
+    public void removeSelectedFromTable(JTable from)
+    {
+        int[] rows = from.getSelectedRows();
+        TableModel tm= from.getModel();
+
+        while(rows.length>0)
+        {
+            ((DefaultTableModel)tm).removeRow(from.convertRowIndexToModel(rows[0]));
+
+            rows = from.getSelectedRows();
+        }
+            from.clearSelection();
+        }
 }
