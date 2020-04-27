@@ -18,14 +18,9 @@ public class Book implements Serializable{
     private String kiadasEve;
     private String ISBN;
     private String ID;
-
-
-
-    public Book(){
-        
-    }
+    private String kolcsonozhetoe;
     
-    public Book(String cim, String szerzo, String kiado, String kiadasEve, String ISBN, String ID){
+    public Book(String cim, String szerzo, String kiado, String kiadasEve, String ISBN, String ID, String kolcsonozhetoe){
         this.cim = cim;
         this.szerzo = szerzo;
         this.kiado = kiado;
@@ -33,12 +28,21 @@ public class Book implements Serializable{
         this.cim = cim;
         this.kiadasEve = kiadasEve;
         this.ID = ID;
+        this.kolcsonozhetoe = kolcsonozhetoe;
     }
+
+    public Book() {
+        
+    }
+        
     public void setCim(String cim){
         this.cim = cim;
     }
     
-   
+    public void setKolcsonozhetoe(String kolcsonozhetoe){
+        this.kolcsonozhetoe = kolcsonozhetoe;
+    }
+    
     public void setSzerzo(String szerzo){
         this.szerzo = szerzo;
     }
@@ -58,9 +62,13 @@ public class Book implements Serializable{
     public void setID(String ID) {
         this.ID = ID;
     }
-
+    
     public String getCim() {
         return cim;
+    }
+    
+    public String getKolcsonozhetoe() {
+        return kolcsonozhetoe;
     }
 
     public String getSzerzo() {

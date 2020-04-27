@@ -157,6 +157,7 @@ public class NewBook extends javax.swing.JFrame {
         k.setKiadasEve(jTextField4.getText());
         k.setISBN(jTextField5.getText());
         k.setID(jTextField6.getText());
+        k.setKolcsonozhetoe("1");
         
         konyvLista.hozzad(k);
         JOptionPane.showMessageDialog(this, "Sikeres hozzaadas!");

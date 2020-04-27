@@ -19,14 +19,16 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         /*
-        Book konyv1 = new Book("Maffiózók mackónadrágban", "Dezső András", "21. Század Kiadó", "2019", "955365", "1");
-        Book konyv2 = new Book("Szupermarket", "Bobby Hall", "21. Század Kiadó", "2019", "321654", "2");
-        Book konyv3 = new Book("Helymeghatarozo meresek", "Simon Lorand", "Sapientia", "2020", "111111", "3");
+        Book konyv1 = new Book("Maffiózók mackónadrágban", "Dezső András", "21. Század Kiadó", "2019", "955365", "1","1");
+        Book konyv2 = new Book("Szupermarket", "Bobby Hall", "21. Század Kiadó", "2019", "321654", "2","1");
+        Book konyv3 = new Book("Helymeghatarozo meresek", "Simon Lorand", "Sapientia", "2020", "111111", "3","0");
         
         BooksList konyvLista = new BooksList();
         konyvLista.hozzad(konyv1);
         konyvLista.hozzad(konyv2);
         konyvLista.hozzad(konyv3);
+        konyvLista.kolcsonozheto();
+        
         konyvLista.kiListaz();
         System.out.println("\n");
         

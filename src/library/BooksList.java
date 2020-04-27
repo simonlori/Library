@@ -39,6 +39,14 @@ public class BooksList implements  Serializable{
         konyvek = new ArrayList<Book>();
     }
     
+    public Book kolcsonozheto(){
+        for(Book konyv : konyvek){
+            if(konyv.getKolcsonozhetoe().equals("1"))
+                System.out.println(konyv);
+        }
+        return null;
+    }
+    
     public Book keres(String ID){
         for(Book konyv : konyvek){
             if(konyv.getID().equals(ID))
@@ -52,6 +60,7 @@ public class BooksList implements  Serializable{
     {
         return konyvek.size();
     }
+    
     public void hozzad(Book konyv){
         konyvek.add(konyv);
     }
@@ -65,6 +74,16 @@ public class BooksList implements  Serializable{
         return false;
     }
     
+    public Boolean modositK(String Id, Book konyv){
+        for(Book konyvElem : konyvek){
+            if(konyvElem.getID().equals(Id) ){
+                konyvElem.setKolcsonozhetoe(konyv.getKolcsonozhetoe());
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public Boolean modosit(String Id, Book konyv){
         for(Book konyvElem : konyvek){
             if(konyvElem.getID().equals(Id) ){
@@ -72,7 +91,8 @@ public class BooksList implements  Serializable{
                 konyvElem.setISBN(konyv.getISBN());
                 konyvElem.setKiadasEve(konyv.getKiadasEve());
                 konyvElem.setKiado(konyv.getKiado());
-                konyv.setSzerzo(konyv.getSzerzo());
+                konyvElem.setSzerzo(konyv.getSzerzo());
+                konyvElem.setKolcsonozhetoe(konyv.getKolcsonozhetoe());
                 return true;
             }
         }
@@ -141,6 +161,10 @@ public class BooksList implements  Serializable{
             Element konyvKiadasEve = doc.createElement("KiadasEve");
             konyvKiadasEve.appendChild(doc.createTextNode(book.getKiadasEve()));
             konyv.appendChild(konyvKiadasEve);
+            
+            Element konyvKolcsonozhetoe = doc.createElement("Kolcsonozhetoe");
+            konyvKolcsonozhetoe.appendChild(doc.createTextNode(book.getKolcsonozhetoe()));
+            konyv.appendChild(konyvKolcsonozhetoe);
         }
         
         // write the content into xml file
@@ -210,6 +234,7 @@ public class BooksList implements  Serializable{
                     System.out.println("Kiado : " + eElement.getElementsByTagName("Kiado").item(0).getTextContent());
                     System.out.println("ISBN : " + eElement.getElementsByTagName("ISBN").item(0).getTextContent());
                     System.out.println("KiadasEve : " + eElement.getElementsByTagName("KiadasEve").item(0).getTextContent());
+                    System.out.println("Kolcsonozhetoe : " + eElement.getElementsByTagName("Kolcsonozhetoe").item(0).getTextContent());
                     
                     k.setID(eElement.getAttribute("id"));
                     k.setCim(eElement.getElementsByTagName("Cim").item(0).getTextContent());
@@ -217,6 +242,7 @@ public class BooksList implements  Serializable{
                     k.setKiado(eElement.getElementsByTagName("Kiado").item(0).getTextContent());
                     k.setISBN(eElement.getElementsByTagName("ISBN").item(0).getTextContent());
                     k.setKiadasEve(eElement.getElementsByTagName("KiadasEve").item(0).getTextContent());
+                    k.setKolcsonozhetoe(eElement.getElementsByTagName("Kolcsonozhetoe").item(0).getTextContent());
                     konyvek.add(k);
                 }
             }

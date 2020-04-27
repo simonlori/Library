@@ -64,6 +64,8 @@ public class Interface extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
@@ -76,7 +78,7 @@ public class Interface extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Szerzo", "Cim", "Kiado", "Kiadasi ev", "ISBN"
+                "ID", "Szerzo", "Cim", "Kiado", "Kiadasi ev", "ISBN", "Kolcsonoz"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -197,6 +199,22 @@ public class Interface extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem7);
 
+        jMenuItem13.setText("Kolcsonozheto konyvek");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem13);
+
+        jMenuItem14.setText("Kikolcsonzott konyvek");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem14);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("User");
@@ -235,11 +253,11 @@ public class Interface extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
                             .addComponent(jScrollPane2))
                         .addGap(63, 63, 63)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton1)
                             .addComponent(jButton2)))
                     .addComponent(jLabel2)
-                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 960, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(110, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -258,14 +276,15 @@ public class Interface extends javax.swing.JFrame {
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(109, 109, 109))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))))
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addGap(70, 70, 70))))
         );
 
         pack();
@@ -345,7 +364,7 @@ public class Interface extends javax.swing.JFrame {
             {
                 for(int i=0 ;i < konyvLista.meret(); ++i)
                 {
-                    tableModel.insertRow(tableModel.getRowCount(), new Object[]{konyvLista.konyvek.get(i).getID(), konyvLista.konyvek.get(i).getSzerzo(), konyvLista.konyvek.get(i).getCim(), konyvLista.konyvek.get(i).getKiado(), konyvLista.konyvek.get(i).getKiadasEve(),konyvLista.konyvek.get(i).getISBN()});
+                    tableModel.insertRow(tableModel.getRowCount(), new Object[]{konyvLista.konyvek.get(i).getID(), konyvLista.konyvek.get(i).getSzerzo(), konyvLista.konyvek.get(i).getCim(), konyvLista.konyvek.get(i).getKiado(), konyvLista.konyvek.get(i).getKiadasEve(),konyvLista.konyvek.get(i).getISBN(),konyvLista.konyvek.get(i).getKolcsonozhetoe()});
                 }
         
             }
@@ -365,7 +384,6 @@ public class Interface extends javax.swing.JFrame {
                 {
                     tableModel2.insertRow(tableModel2.getRowCount(), new Object[]{felhasznaloLista.userList.get(i).getCNP(),felhasznaloLista.userList.get(i).getNev(),felhasznaloLista.userList.get(i).getElerhetoseg().getEmail(),felhasznaloLista.userList.get(i).getElerhetoseg().getTelSzam()});
                 }
-        
             }
         }
     }//GEN-LAST:event_jMenuItem11ActionPerformed
@@ -388,8 +406,23 @@ public class Interface extends javax.swing.JFrame {
         String ID = (String)tableModel2.getValueAt(a,3);
         System.out.println("Deleted Id : " + ID);
         felhasznaloLista.removeSelectedFromTable(jTable2);
+        felhasznaloLista.torol(ID);
         JOptionPane.showMessageDialog(this, "Sikeres felhasznalo torles! \n\nA torolt felhasznalo ID-ja: "+ID);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        Kiveves a = new Kiveves();
+        a.setVisible(true);
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        Kikolcsonzott a = new Kikolcsonzott();
+        a.setVisible(true);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -419,6 +452,7 @@ public class Interface extends javax.swing.JFrame {
         //</editor-fold>
         felhasznaloLista = new UsersList();
         konyvLista = new BooksList();
+        l = new KolcsonLista();
         /*Konyvek
         konyv1 = new Book("Maffiózók mackónadrágban", "Dezső András", "21. Század Kiadó", "2019", "955365", "1");
         konyv2 = new Book("Szupermarket", "Bobby Hall", "21. Század Kiadó", "2019", "321654", "2");
@@ -449,6 +483,7 @@ public class Interface extends javax.swing.JFrame {
     }
     public static BooksList konyvLista;
     public static UsersList felhasznaloLista;
+    public static KolcsonLista l;
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -463,6 +498,8 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
